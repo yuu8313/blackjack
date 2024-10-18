@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブラックジャック </title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body x-data="game()">
+    <h1>ブラックジャック</h1>
+    <div class="game-area">
+        <div>
+            <h2>ディーラーの手札 (合計: <span x-text="dealerTotal"></span>)</h2>
+            <div class="hand" id="dealer-hand">
+                <template x-for="card in dealerHand">
+                    <div class="card" x-html="card.isVisible ? getSVGCard(card) : getBackCard()"></div>
+                </template>
+            </div>
+        </div>
+        <div>
+            <h2>プレイヤーの手札 (合計: <span x-text="playerTotal"></span>)</h2>
+            <div class="hand" id="player-hand">
+                <template x-for="card in playerHand">
+                    <div class="card" x-html="getSVGCard(card)"></div>
+                </template>
+            </div>
+        </div>
+        <div class="controls">
+            <button @click="hit" x-show="!gameOver">ヒット</button>
+            <button @click="stand" x-show="!gameOver">スタンド</button>
+            <button @click="newGame" x-show="gameOver">新しいゲーム</button>
+            <button @click="showRules">？ ルール</button>
+        </div>
+        <p x-text="message"></p>
+    </div>
+    <div class="rules" id="rules">
+        <button class="close-rules" @click="hideRules">&times;</button>
+        <h2>ブラックジャックのルール</h2>
+        <ul>
+            <li>ゲームの目的は、手札の合計を21に近づけることです。</li>
+            <li>カードの値：2-10はその数字、J,Q,Kは10、Aは1または11として扱われます。</li>
+            <li>プレイヤーとディーラーは最初に2枚ずつカードを受け取ります。</li>
+            <li>ディーラーの1枚目のカードは表向き、2枚目は裏向きです。</li>
+            <li>プレイヤーは「ヒット」でカードを追加するか、「スタンド」で手札を確定します。</li>
+            <li>手札の合計が21を超えると「バスト」となり、その時点で負けとなります。</li>
+            <li>プレイヤーがスタンドした後、ディーラーは17以上になるまでカードを引きます。</li>
+            <li>最終的に21に近い方が勝利します。同点の場合は引き分けです。</li>
+        </ul>
+    </div>
+
+    <script src="src/game.js"></script>
+    <script>
+        function getSVGCard(card) {
+            return `<img src="${card.image}" alt="${card.value} of ${card.suit}" width="100" height="140" />`;
+        }
+
+        function getBackCard() {
+    return `<img src="https://deckofcardsapi.com/static/img/back.png" alt="Card Back" width="100" height="140" />`;
+}
+
+    </script>
+
+
+</body>
+</html>

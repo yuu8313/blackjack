@@ -1,0 +1,104 @@
+body {
+    font-family: 'Noto Serif JP', serif;
+    background-color: #0a5c36;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.game-area {
+    background-color: #0d8049;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 800px;
+}
+
+.hand {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #ffd700;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ffec8b;
+}
+
+.rules {
+    background-color: rgba(0,0,0,0.8);
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    display: none;
+}
+
+.close-rules {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.message {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+/* デバイス対応のスタイル */
+@media (max-width: 600px) {
+    .card img {
+        width: 70px;
+        height: 98px;
+    }
+
+    .message {
+        font-size: 18px;
+    }
+}
